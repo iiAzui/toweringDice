@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk2h64ry6dt7a"]
+
+[ext_resource type="PackedScene" uid="uid://jjqcp7iju4u5" path="res://Die.tscn" id="1_boa2x"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="normalDie" parent="." instance=ExtResource("1_boa2x")]
+
+[node name="normalDie2" parent="." instance=ExtResource("1_boa2x")]
+position = Vector2(64, 16)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" parent="." instance=ExtResource("1_boa2x")]
+position = Vector2(136, 48)
+
+[node name="Sprite2D2" parent="." instance=ExtResource("1_boa2x")]
+position = Vector2(104, 40)
+
+[node name="Sprite2D3" parent="." instance=ExtResource("1_boa2x")]
+position = Vector2(192, 56)

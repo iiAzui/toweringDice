@@ -1,17 +1,73 @@
-[gd_scene load_steps=3 format=3 uid="uid://jjqcp7iju4u5"]
+[gd_scene load_steps=5 format=3 uid="uid://jjqcp7iju4u5"]
 
 [ext_resource type="Texture2D" uid="uid://clotcr8llgfqj" path="res://icon.svg" id="1_faing"]
+[ext_resource type="Script" uid="uid://df72mr1ekj8gk" path="res://dice.gd" id="1_y0kig"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_slcr4"]
-size = Vector2(32, 32)
+[sub_resource type="LabelSettings" id="LabelSettings_026nj"]
+font_size = 64
 
-[node name="StaticBody2D" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0kig"]
+size = Vector2(104, 24)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D"]
 position = Vector2(16, 16)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_faing")
+script = ExtResource("1_y0kig")
+type = "normal"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(16, 16)
-shape = SubResource("RectangleShape2D_slcr4")
+[node name="num" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 64.0
+offset_bottom = 64.0
+text = "1-6"
+label_settings = SubResource("LabelSettings_026nj")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TopArea" type="Area2D" parent="."]
+position = Vector2(0, -64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopArea"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_y0kig")
+
+[node name="ColorRect" type="ColorRect" parent="TopArea"]
+visible = false
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+metadata/_edit_use_anchors_ = true
+
+[node name="BottomArea" type="Area2D" parent="."]
+position = Vector2(0, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomArea"]
+shape = SubResource("RectangleShape2D_y0kig")
+
+[node name="ColorRect" type="ColorRect" parent="BottomArea"]
+visible = false
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+metadata/_edit_use_anchors_ = true
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="area_entered" from="TopArea" to="." method="_on_top_area_entered"]
+[connection signal="area_exited" from="TopArea" to="." method="_on_top_area_exited"]
+[connection signal="area_entered" from="BottomArea" to="." method="_on_bottom_area_area_entered"]
+[connection signal="area_exited" from="BottomArea" to="." method="_on_bottom_area_exited"]
